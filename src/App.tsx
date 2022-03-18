@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
+import Table from './components/Table';
+import Detail from './components/Test/Detail';
+import List from './components/Test/List';
+
+export type People = {
+  name: string
+  age:number
+  img: string
+  note?: string
+}
+export interface IState {
+  people : People[]
+}
+
+const data = [
+  {
+    name: "LeBron James",
+    age: 35,
+    img: "https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png",
+    note: "Allegeric to staying on the same team",
+  },
+  {
+    name: "Kobe Bryant",
+    age: 42,
+    img: "https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png"
+  }
+]
 
 function App() {
+  const [people, setPeople] = useState<IState["people"]>(data)
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className='title'>List card</h1>
+      <List people={people} setPeople={setPeople} />
+      <Detail people={people} setPeople={setPeople} />
+      <h1 className='title'>Temples</h1>
+      <Table />
     </div>
   );
 }
