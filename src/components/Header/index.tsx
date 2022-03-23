@@ -1,9 +1,7 @@
-import React  from 'react';
+import React from 'react'
 
-const SwitchButton:React.FC = () => {
-    return(
-        <button>The light is ON</button>
-    )
+const SwitchButton: React.FC = () => {
+  return <button>The light is ON</button>
 }
 
-export default SwitchButton;
+export default SwitchButton

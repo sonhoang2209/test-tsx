@@ -1,9 +1,7 @@
 type Props = {
-    text: String;
+  text: String
 }
 
 export const TextField = (props: Props) => {
-  return (
-    <p>{props.text}</p>
-  )
+  return <p>{props.text}</p>
 }
