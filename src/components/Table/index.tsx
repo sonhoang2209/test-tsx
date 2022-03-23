@@ -16,8 +16,8 @@ function Table() {
     const [search, setSearch] = useState<IProps["search"]>("")
 
     const getlocations = async ():Promise<void> => {
-        const locations = await axios.get("/")
-        return setLocation(locations.data)
+        const locations = await axios.get("/map")
+        setLocation(locations.data)
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>)=> {

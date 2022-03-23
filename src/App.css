@@ -74,20 +74,20 @@
   margin: 0;
 }
 
-.addtolist {
+.add-to-list {
   display: flex;
   flex-direction: column;
   width: 30rem;
   margin: 5rem auto
 }
 
-.addtolist-input {
+.add-to-list-input {
   padding: 0.5rem;
   font-size: 1rem;
   margin: 0.3rem 0rem
 }
 
-.addtolist-btn {
+.add-to-list-btn {
   padding: 0.5rem;
   cursor: pointer;
   background-color: #0b5468;

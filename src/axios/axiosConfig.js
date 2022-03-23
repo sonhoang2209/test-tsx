@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const axiosConfig = axios.create(
     {
-        baseURL: 'https://mapapi-lehuyknight.herokuapp.com/map',
+        baseURL: 'https://mapapi-lehuyknight.herokuapp.com',
         headers: {
             'content-type': 'application.json'
         }
