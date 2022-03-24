@@ -2,9 +2,21 @@ import React from 'react'
 import { IProps } from '../CreateUser'
 import { People } from '../../../App'
 
-const List: React.FC<IProps> = ({ people, setPeople }) => {
+// interface IPeople {
+//   people: IProps['people']
+//   setPeople: IProps['setPeople']
+//   setPeopleEdit: IProps['setPeopleEdit']
+// }
+
+type Todo = Omit<IProps, 'peopleEdit'>
+
+const List: React.FC<Todo> = ({ people, setPeople, setPeopleEdit }) => {
   const handleClickDel = (data: People) => (): void => {
     setPeople([...people.filter(person => person !== data)])
+  }
+
+  const handleClickEdit = (data: People) => (): void => {
+    setPeopleEdit({ ...data })
   }
 
   const renderList = (): JSX.Element[] => {
@@ -17,14 +29,14 @@ const List: React.FC<IProps> = ({ people, setPeople }) => {
           </div>
           <p>{person.age} years old</p>
           <p className="list-note">{person.note}</p>
-          <td>
-            <button onClick={handleClickDel(person)}>delete</button>
-          </td>
+          <p>
+            <button onClick={handleClickDel(person)}>Delete</button>
+            <button onClick={handleClickEdit(person)}>Edit</button>
+          </p>
         </li>
       )
     })
   }
-
   return <ul>{renderList()}</ul>
 }
 

@@ -2,29 +2,36 @@ import React, { useState, useEffect } from 'react'
 import './style.scss'
 import axios from '../../axios/axiosConfig'
 
-interface IProps {
-  location: {
-    nameTemple: string
-    image: string
-    address: string
-    introduction: string
-  }[]
-  search: string
+export type Location = {
+  nameTemple: string
+  image: string
+  address: string
+  introduction?: string
+  lat: number
+  lng: number
 }
-function Table() {
-  const [location, setLocation] = useState<IProps['location']>([])
-  const [search, setSearch] = useState<IProps['search']>('')
-
-  const getlocations = async (): Promise<void> => {
-    const locations = await axios.get('/map')
-    setLocation(locations.data)
-  }
+type Search = string
+// interface IProps {
+//   location?: Location[]
+//   search?: Search
+// }
+const Table: React.FC = () => {
+  const [location, setLocation] = useState<Location[]>([])
+  const [search, setSearch] = useState<Search>('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
   }
 
   useEffect(() => {
+    const getlocations = async () => {
+      try {
+        const response = await axios.get('/map')
+        setLocation(response?.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
     getlocations()
   }, [])
 

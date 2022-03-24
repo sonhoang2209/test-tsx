@@ -1,13 +1,16 @@
 {
   "extends": [
+    // "eslint:recommended",
+    // "plugin:import/errors",
     "plugin:prettier/recommended",
     "plugin:jsx-a11y/recommended",
     "prettier",
     "react-app"
   ],
-  "plugins": ["prettier", "jsx-a11y"],
+  "plugins": ["prettier", "react", "import", "jsx-a11y"],
   "parser": "@typescript-eslint/parser",
   "env": {
+    "es6": true,
     "browser": true
   },
   "rules": {
@@ -22,9 +25,24 @@
         "useTabs": false,
         "singleQuote": true,
         "printWidth": 100,
-        "jsxSingleQuote": false,
-        "bracketSameLine": false
+        "jsxSingleQuote": false
       }
-    ]
+    ],
+    "react/prop-types": 0,
+    "indent": ["error", 2],
+    "linebreak-style": 1,
+    "semi": 0
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   }
 }
