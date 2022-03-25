@@ -1,7 +1,7 @@
+import { People, IState as Props } from '../../../App'
+
 import React, { useEffect, useState } from 'react'
-import { IState as Props } from '../../../App'
 import uuid from '../../commons/uuid'
-import { People } from '../../../App'
 
 export interface IProps {
   people: Props['people']
@@ -18,11 +18,12 @@ const data: People = {
   img: ''
 }
 
-type DPeople = Partial<People>
+// type RPeople = Required<People>
+type PPeople = Partial<People>
 
 const CreatUser: React.FC<IProps> = ({ people, setPeople, peopleEdit, setPeopleEdit }) => {
   const [person, setPerson] = useState<People>(data)
-  const [personUpd, setPersonUpd] = useState<DPeople>(data)
+  const [personUpd, setPersonUpd] = useState<PPeople>({})
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setPerson({
@@ -52,7 +53,7 @@ const CreatUser: React.FC<IProps> = ({ people, setPeople, peopleEdit, setPeopleE
     if (peopleEdit !== undefined) {
       const isIndExisted = people.findIndex(e => e?.id === peopleEdit?.id)
       people[isIndExisted] = {
-        ...people[isIndExisted],
+        ...peopleEdit,
         ...personUpd
       }
       setPeople([...people])

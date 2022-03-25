@@ -1,6 +1,7 @@
-import React from 'react'
 import { IProps } from '../CreateUser'
 import { People } from '../../../App'
+
+import React from 'react'
 
 // interface IPeople {
 //   people: IProps['people']

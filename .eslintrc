@@ -1,6 +1,6 @@
 {
   "extends": [
-    // "eslint:recommended",
+    "eslint:recommended",
     // "plugin:import/errors",
     "plugin:prettier/recommended",
     "plugin:jsx-a11y/recommended",
@@ -31,7 +31,30 @@
     "react/prop-types": 0,
     "indent": ["error", 2],
     "linebreak-style": 1,
-    "semi": 0
+    "semi": 0,
+    "no-duplicate-imports": ["error", { "includeExports": true }],
+    "@typescript-eslint/no-explicit-any": "error",
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
+      }
+    ]
+    //"import/order":
+    // [
+    //     1,
+    //     { "groups":
+    //         [
+    //           "external",
+    //           "builtin",
+    //           "internal",
+    //           "sibling",
+    //           "parent",
+    //           "index"
+    //         ],
+    //     }
+    //   ]
   },
   "settings": {
     "react": {
