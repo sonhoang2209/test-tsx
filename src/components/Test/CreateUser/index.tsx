@@ -18,12 +18,19 @@ const data: People = {
   img: ''
 }
 
+type DPeople = Partial<People>
+
 const CreatUser: React.FC<IProps> = ({ people, setPeople, peopleEdit, setPeopleEdit }) => {
-  const [person, setPerson] = useState(data)
+  const [person, setPerson] = useState<People>(data)
+  const [personUpd, setPersonUpd] = useState<DPeople>(data)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setPerson({
       ...person,
+      [e.target.name]: e.target.value
+    })
+    setPersonUpd({
+      ...personUpd,
       [e.target.name]: e.target.value
     })
   }
@@ -32,14 +39,25 @@ const CreatUser: React.FC<IProps> = ({ people, setPeople, peopleEdit, setPeopleE
     peopleEdit !== undefined ? setPerson(peopleEdit) : setPerson(data)
   }, [peopleEdit])
 
+  const clear = () => {
+    setPerson(data)
+    setPersonUpd({})
+    setPeopleEdit(undefined)
+  }
+
   const handleClick = (): void => {
     if (!person.name || !person.age || !person.img) {
       return
     }
     if (peopleEdit !== undefined) {
       const isIndExisted = people.findIndex(e => e?.id === peopleEdit?.id)
-      people[isIndExisted] = person
+      people[isIndExisted] = {
+        ...people[isIndExisted],
+        ...personUpd
+      }
       setPeople([...people])
+      console.log(personUpd)
+      clear()
     } else {
       setPeople([
         ...people,
@@ -51,9 +69,8 @@ const CreatUser: React.FC<IProps> = ({ people, setPeople, peopleEdit, setPeopleE
           img: person.img
         }
       ])
-      setPerson(data)
+      clear()
     }
-    setPeopleEdit(undefined)
   }
 
   return (
